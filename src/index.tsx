@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'macro-css';
 
 import App from './App';
 import './scss/app.scss';

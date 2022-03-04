@@ -1,0 +1,22 @@
+@import "../../../scss/variables";
+
+.wrapper {
+  .menu {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 75px;
+    cursor: pointer;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 17px;
+    transform: rotate(-90deg);
+    .icon {
+      transform: rotate(90deg);
+    }
+    .text {
+      padding-left: 18px;
+    }
+  }
+}
