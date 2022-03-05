@@ -1,3 +1,11 @@
 @import "fonts";
 @import "variables";
 @import "libs/normalize";
+
+.appWrapper {
+  display: flex;
+}
+.appWrapperOpen {
+  position: absolute;
+  left: -400px;
+}

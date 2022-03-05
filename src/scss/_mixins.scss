@@ -1,0 +1,9 @@
+@mixin imgCover($border-radius) {
+  border-radius: $border-radius;
+  max-width: 100%;
+  height: auto;
+}
+@mixin fontFamily($font-family, $font-size) {
+  font-family: $font-family, Roboto, system-ui, Tahoma, sans-serif;
+  font-size: $font-size;
+}

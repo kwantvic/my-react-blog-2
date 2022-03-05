@@ -1,19 +1,26 @@
 @import "src/scss/variables";
 
 .wrapper {
-  margin: 26px 0 26px 43px;
-  .header {
-    height: 117px;
-    color: $white;
-    .name {
-      font-size: 26px;
-      font-weight: 800;
-      padding-bottom: 14px;
-    }
-    .data {
-      font-weight: 500;
-      font-size: 14px;
-      color: $gray;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100vh;
+  color: $white;
+  .upBlock {
+    .header {
+      height: 143px;
+      padding-left: 43px;
+      .name {
+        font-size: 26px;
+        font-weight: 800;
+        padding-top: 35px;
+        padding-bottom: 14px;
+      }
+      .data {
+        font-weight: 500;
+        font-size: 14px;
+        color: $gray;
+      }
     }
   }
 }

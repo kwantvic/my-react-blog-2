@@ -1,30 +1,33 @@
 import React from 'react';
-import AppContext, {AppContextValue} from "../../../context";
 
+import AppContext, {AppContextValue} from "../../../context";
 import styles from "./OpenMenu.module.scss";
+import Item from "../Item";
 
 const OpenMenu: React.FC = () => {
     const {toggleMenu, isAuth} = React.useContext(AppContext) as AppContextValue;
     return (
         // todo: close openMenu to click without this component
-        <div className={styles.wrapper} onClick={toggleMenu}>
-            <div className={styles.header}>
-                {isAuth && <>
-                    <div className={styles.name}>Вася Пупкин</div>
-                    <div className={styles.data}>Дата регистрации: 31 февраля 2020 в 02:33</div>
-                </>}
-            </div>
-            <div className={styles.itemsMenu}>
-                <div>Главная</div>
-                {!isAuth && <div>Войти</div>}
-                {isAuth && <>
-                    <div>Мой профиль</div>
-                    <div>Создать запись</div>
-                    <div>Выйти</div>
-                </>}
+        <div className={styles.wrapper}>
+            <div className={styles.upBlock}>
+                <div className={styles.header}>
+                    {isAuth && <>
+                        <div className={styles.name}>Вася Пупкин</div>
+                        <div className={styles.data}>Дата регистрации: 31 февраля 2020 в 02:33</div>
+                    </>}
+                </div>
+                <div className={styles.itemsMenu}>
+                    <Item name={"Главная"}/>
+                    {!isAuth && <Item name={"Войти"}/>}
+                    {isAuth && <>
+                        <Item name={"Мой профиль"}/>
+                        <Item name={"Создать запись"}/>
+                        <Item name={"Выйти"}/>
+                    </>}
+                </div>
             </div>
             <div className={styles.footer}>
-                меню
+                <Item name={"меню"} closeMenu onClick={toggleMenu}/>
             </div>
         </div>
     );
