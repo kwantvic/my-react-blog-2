@@ -1,4 +1,5 @@
 @import "src/scss/variables";
+@import "src/scss/mixins";
 
 .wrapper {
   display: flex;
@@ -17,8 +18,8 @@
         padding-bottom: 14px;
       }
       .data {
-        font-weight: 500;
-        font-size: 14px;
+        @include fontFamily(Inter-Regular, 14px);
+        font-weight: 800;
         color: $gray;
       }
     }

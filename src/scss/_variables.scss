@@ -3,11 +3,16 @@ $blue: #13315E;
 $darkBlue: #0A2246;
 $white: #FFFFFF;
 $gray: #FFFFFF80;
+$grayIcon: #DEDEDE;
 $grayWhite: #AAAAAA;
 $blueHover: #FFFFFF0F;
 $yellow: #FFDF36;
+$yellowText: #68572D;
 
 $widthCloseMenu: 100px;
 $widthOpenMenu: 400px;
+$widthHalf: calc((100vw - #{$widthCloseMenu})/2 - 15px/2);
+
+$borderItems: 1px solid #F9F9F9;
 
 

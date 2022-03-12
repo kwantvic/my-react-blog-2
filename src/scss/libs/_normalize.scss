@@ -18,6 +18,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: $black;
+  overflow-y: scroll !important;
+  //overflow: visible !important;
 }
 
 a,

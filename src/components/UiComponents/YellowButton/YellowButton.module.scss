@@ -1,0 +1,17 @@
+@import "src/scss/variables";
+@import "src/scss/mixins";
+
+.button {
+  background-color: $yellow !important;
+  border-radius: 12px !important;
+  border: 0 !important;
+  span {
+    color: $yellowText;
+    text-transform: none;
+    @include fontFamily(Inter-SemiBold, 16px);
+  }
+  &:hover {
+    background: rgba(255, 223, 54, 0.8) !important;
+  }
+}
+
