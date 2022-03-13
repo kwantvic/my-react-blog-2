@@ -2,13 +2,14 @@ import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux";
 
 import styles from "./Header.module.scss";
-import AppContext, {AppContextValue} from "../../context";
 import AuthModal from "../AuthModal";
 
 const Header: React.FC = () => {
-    const {isAuth} = React.useContext(AppContext) as AppContextValue;
+    const isAuth = useSelector((state: RootState) => state.auth.isAuth);
     return (
         <div className={styles.wrapper}>
             <div className={styles.name}>

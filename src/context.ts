@@ -2,7 +2,6 @@ import React from 'react';
 
 export type AppContextValue = {
     toggleMenu: () => void;
-    isAuth: boolean;
     isSearch: boolean;
 }
 

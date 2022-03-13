@@ -3,9 +3,13 @@ import React from 'react';
 import AppContext, {AppContextValue} from "../../../context";
 import styles from "./OpenMenu.module.scss";
 import Item from "../Item";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../redux";
 
 const OpenMenu: React.FC = () => {
-    const {toggleMenu, isAuth} = React.useContext(AppContext) as AppContextValue;
+    const {toggleMenu} = React.useContext(AppContext) as AppContextValue;
+    const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+
     return (
         // todo: close openMenu to click without this component
         <div className={styles.wrapper}>

@@ -3,6 +3,7 @@ import Slide from '@mui/material/Slide';
 import {TransitionProps} from '@mui/material/transitions';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Dialog from '@mui/material/Dialog';
+import { useStateIfMounted } from "use-state-if-mounted";
 
 import LogIn from "./LogIn";
 import Authorization from "./Authorization";
@@ -16,9 +17,18 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const AuthModal: React.FC = () => {
-    const [isLogin, setIsLogin] = React.useState(true);
+    const [isLogin, setIsLogin] = useStateIfMounted(true);
     const [open, setOpen] = React.useState(false);
+    const [inputValue, setInputValue] = React.useState({
+        name: "",
+        email: "",
+        password: ""
+    });
 
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setInputValue({...inputValue, [name]: value});
+    };
     const handleClickOpen = () => {
         setOpen(true);
         setIsLogin(true);
@@ -26,6 +36,7 @@ const AuthModal: React.FC = () => {
     const handleClose = () => {
         setOpen(false);
         setIsLogin(true);
+        setInputValue({name: "", email: "", password: ""});
     };
     const onRegistration = () => {
         setIsLogin(false);
@@ -41,7 +52,8 @@ const AuthModal: React.FC = () => {
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
             >
-                {isLogin ? <LogIn onClose={handleClose} onRegistration={onRegistration}/> :
+                {isLogin ? <LogIn onClose={handleClose} onRegistration={onRegistration} onChange={handleChangeInput}
+                                  inputValue={inputValue}/> :
                     <Authorization onClose={handleClose}/>}
             </Dialog>
         </>

@@ -12,7 +12,6 @@ import YellowButton from "../../UiComponents/YellowButton";
 type AuthorizationProps = {
     onClose: () => void;
 }
-
 interface FormInput {
     name: string;
     email: string;
@@ -20,8 +19,8 @@ interface FormInput {
 }
 
 const schema = yup.object().shape({
-    name: yup.string().min(2, 'Слишком короткое имя!'),
-    email: yup.string().email('Неверная почта!').required('Укажите почту!'),
+    name: yup.string().required('Заполните поле!').min(2, 'Слишком короткое имя!'),
+    email: yup.string().required('Укажите почту!').email('Неверная почта!'),
     password: yup.string().when('email', {
         is: (value: string) => value.includes('@'),
         then: yup.string().required('Введите пароль!').min(4, 'Пароль должен состоять минимум из 4-х символов!')
@@ -41,6 +40,7 @@ const Authorization: React.FC<AuthorizationProps> = ({onClose}) => {
 
     const onSubmit = (data: FormInput) => {
         alert(JSON.stringify(data));
+        reset();
     };
     const togglePassword = () => {
         setPasswordVisibility(!passwordVisibility)
