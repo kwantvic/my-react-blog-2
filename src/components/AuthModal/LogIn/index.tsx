@@ -5,13 +5,11 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {useForm} from "react-hook-form";
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-import axios from "axios";
 import {useDispatch} from "react-redux";
 
 import styles from "./LogIn.module.scss";
 import YellowButton from "../../UiComponents/YellowButton";
-import {setAuthAction} from "../../../redux/actions/auth";
-import {authApi} from "../../../api/api";
+import {logInThunk} from "../../../redux/actions/auth";
 
 type LogInProps = {
     onClose: () => void;
@@ -25,6 +23,7 @@ type LogInProps = {
 }
 
 export interface FormInput {
+    name?: string;
     email: string;
     password: string;
 }
@@ -52,18 +51,11 @@ const LogIn: React.FC<LogInProps> = ({onClose, onRegistration, onChange, inputVa
     const togglePassword = () => {
         setPasswordVisibility(!passwordVisibility)
     }
-    const onSubmit = async (data: FormInput) => {
-        try {
-            let resp = await authApi.login(data);
-            localStorage.setItem('token', resp.token);
-            dispatch(setAuthAction(resp, true));
-            reset();
-            onClose();
-        } catch (e: any) {
-            console.log("🧲❌error:", e.response.data);
-            alert(e)
-        }
-    };
+    const onSubmit = (data: FormInput) => {
+        dispatch(logInThunk(data));
+        reset();
+        onClose();
+    }
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>

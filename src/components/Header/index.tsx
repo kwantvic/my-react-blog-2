@@ -1,31 +1,37 @@
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import LogoutIcon from '@mui/icons-material/Logout';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux";
 
 import styles from "./Header.module.scss";
 import AuthModal from "../AuthModal";
+import {logOutThunk} from "../../redux/actions/auth";
+import DraggableDialog from "../UiComponents/DraggableDialog";
 
 const Header: React.FC = () => {
-    const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+    const auth = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch();
+
+    function onLogOut() {
+        dispatch(logOutThunk())
+    }
     return (
         <div className={styles.wrapper}>
             <div className={styles.name}>
-                Victor Victorenko Blog
+                {auth.isAuth ? auth.user.fullName : "Victor Victorenko"} Blog
             </div>
             <div className={styles.icons}>
                 <div className="tooltip">
                     <SearchIcon style={{marginRight: 10, cursor: "pointer"}}/>
                     <span className="tooltiptext" style={{marginLeft: "-47px"}}>Поиск</span></div>
-                {isAuth ? (
+                {auth.isAuth ? (
                     <>
                         <div className="tooltip">
                             <DriveFileRenameOutlineIcon style={{marginRight: 13, cursor: "pointer"}}/>
                             <span className="tooltiptext" style={{marginLeft: "-47px"}}>Написать</span></div>
                         <div className="tooltip">
-                            <LogoutIcon style={{cursor: "pointer"}}/>
+                            <DraggableDialog onLogOut={onLogOut} title={"Вы действительно хотите выйти?"}/>
                             <span className="tooltiptext" style={{marginLeft: "-44px"}}>Выйти</span></div>
                     </>
                 ) : (

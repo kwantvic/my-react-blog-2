@@ -11,8 +11,9 @@
       font-weight: 800;
       font-size: 72px;
       line-height: 60px;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
       word-wrap: break-word;
+      text-transform: capitalize;
     }
     h4 {
       @include fontFamily(Inter-Light, 34px);

@@ -1,0 +1,24 @@
+@import "src/scss/mixins";
+
+.wrapper {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 400px;
+  font-family: 'Inter-Regular', Roboto, system-ui, Tahoma, sans-serif;
+  font-size: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  span {
+    @include fontFamily(Inter-Regular, 16px);
+  }
+  .error {
+    font-family: Inter-SemiBold, Roboto, system-ui, Tahoma, sans-serif;
+  }
+  &__visibly {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease;
+  }
+}

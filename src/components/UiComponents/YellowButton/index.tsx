@@ -7,15 +7,16 @@ type YellowButtonProps = {
     widthButton: string;
     heightButton: string;
     nameButton: string;
+    onClick?: () => void;
 }
 
-const YellowButton: React.FC<YellowButtonProps> = ({widthButton, heightButton, nameButton}) => {
+const YellowButton: React.FC<YellowButtonProps> = ({widthButton, heightButton, nameButton, onClick}) => {
     const buttonStyles = {
         width: widthButton,
         height: heightButton,
     };
     return (
-        <Button style={buttonStyles} className={styles.button} variant="outlined"><span>{nameButton}</span></Button>
+        <Button onClick={onClick} style={buttonStyles} className={styles.button} variant="outlined"><span>{nameButton}</span></Button>
     );
 };
 

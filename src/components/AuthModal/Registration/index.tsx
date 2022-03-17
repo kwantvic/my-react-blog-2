@@ -8,18 +8,20 @@ import {yupResolver} from '@hookform/resolvers/yup';
 
 import styles from "../LogIn/LogIn.module.scss";
 import YellowButton from "../../UiComponents/YellowButton";
+import {useDispatch} from "react-redux";
+import {registrationThunk} from "../../../redux/actions/auth";
 
-type AuthorizationProps = {
+type RegistrationProps = {
     onClose: () => void;
 }
 interface FormInput {
-    name: string;
+    fullName: string;
     email: string;
     password: string;
 }
 
 const schema = yup.object().shape({
-    name: yup.string().required('Заполните поле!').min(2, 'Слишком короткое имя!'),
+    fullName: yup.string().required('Заполните поле!').min(2, 'Слишком короткое имя!'),
     email: yup.string().required('Укажите почту!').email('Неверная почта!'),
     password: yup.string().when('email', {
         is: (value: string) => value.includes('@'),
@@ -27,8 +29,9 @@ const schema = yup.object().shape({
     }),
 });
 
-const Authorization: React.FC<AuthorizationProps> = ({onClose}) => {
+const Registration: React.FC<RegistrationProps> = ({onClose}) => {
     const [passwordVisibility, setPasswordVisibility] = React.useState(false);
+    const dispatch = useDispatch();
     const {
         register,
         handleSubmit,
@@ -38,13 +41,14 @@ const Authorization: React.FC<AuthorizationProps> = ({onClose}) => {
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data: FormInput) => {
-        alert(JSON.stringify(data));
-        reset();
-    };
     const togglePassword = () => {
         setPasswordVisibility(!passwordVisibility)
     }
+    const onSubmit = (data: FormInput) => {
+        dispatch(registrationThunk(data));
+        reset();
+        onClose();
+    };
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
@@ -52,8 +56,8 @@ const Authorization: React.FC<AuthorizationProps> = ({onClose}) => {
                 <i onClick={onClose}><CloseIcon style={{color: "#373737", cursor: "pointer"}}/></i></div>
             <div className={styles.name}>
                 <label>Имя и фамилия</label>
-                <input {...register('name')}/>
-                {errors?.name && <p>{errors.name.message}</p>}</div>
+                <input {...register('fullName')}/>
+                {errors?.fullName && <p>{errors.fullName.message}</p>}</div>
             <div className={styles.email}>
                 <label>Email</label>
                 <input {...register('email')}/>
@@ -72,4 +76,4 @@ const Authorization: React.FC<AuthorizationProps> = ({onClose}) => {
     );
 };
 
-export default Authorization;
+export default Registration;

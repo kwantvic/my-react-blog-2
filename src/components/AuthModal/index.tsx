@@ -6,13 +6,14 @@ import Dialog from '@mui/material/Dialog';
 import { useStateIfMounted } from "use-state-if-mounted";
 
 import LogIn from "./LogIn";
-import Authorization from "./Authorization";
+import Registration from "./Registration";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
         children: React.ReactElement<any, any>;
     },
     ref) {
+    // todo: Element Slide doesn't have required attribute children
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -54,7 +55,7 @@ const AuthModal: React.FC = () => {
             >
                 {isLogin ? <LogIn onClose={handleClose} onRegistration={onRegistration} onChange={handleChangeInput}
                                   inputValue={inputValue}/> :
-                    <Authorization onClose={handleClose}/>}
+                    <Registration onClose={handleClose}/>}
             </Dialog>
         </>
     );

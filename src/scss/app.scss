@@ -5,10 +5,11 @@
 
 .appWrapper {
   display: flex;
+  position: relative;
 }
 .appWrapperOpen {
   position: absolute;
-  left: calc(-400px + #{$widthCloseMenu} - 15px);
+  left: calc(-400px + #{$widthCloseMenu} - 5px);
 }
 .itemsMenu {
   border-left: $borderItems;
