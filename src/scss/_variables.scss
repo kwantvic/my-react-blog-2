@@ -1,18 +1,25 @@
 $black: #202020;
 $blue: #13315E;
+$blueText: #13315E;
 $darkBlue: #0A2246;
 $white: #FFFFFF;
 $gray: #FFFFFF80;
 $grayIcon: #DEDEDE;
 $grayWhite: #AAAAAA;
+$grayText: #898C90;
+$grayText2: #C1C1C1;
+$green: rgba(111, 207, 151, 1);
+$greenHover: rgba(111, 207, 151, 0.85);
 $blueHover: #FFFFFF0F;
 $yellow: #FFDF36;
 $yellowText: #68572D;
+$grayBorder: #ECEEF1;
 
 $widthCloseMenu: 100px;
 $widthOpenMenu: 400px;
-$widthHalf: calc((100vw - #{$widthCloseMenu})/2 - 15px/2);
+$widthHalf: calc((100vw - #{$widthCloseMenu}) / 2 - 15px / 2);
 
 $borderItems: 1px solid #F9F9F9;
+$borderInputHover: 1px solid rgba(104, 87, 45, 0.3);
 
 

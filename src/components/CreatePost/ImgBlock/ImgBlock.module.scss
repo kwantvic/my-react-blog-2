@@ -1,0 +1,46 @@
+@import "src/scss/variables";
+@import "src/scss/mixins";
+
+.wrapper {
+  width: 100%;
+  padding-bottom: 30px;
+
+  .span {
+    @include fontFamily(Inter-SemiBold, 16px);
+    color: #0A3465;
+  }
+
+  .form {
+    display: flex;
+    padding-top: 7px;
+    padding-bottom: 5px;
+
+    .input {
+      padding-right: 15px;
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      padding: 0 10px;
+      height: 45px;
+      border: 1px solid $grayBorder;
+      border-radius: 10px;
+      @include fontFamily(Inter-Regular, 16px);
+      color: $blueText;
+    }
+  }
+
+  .img {
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    background-color: $grayText2;
+    img {
+      margin: 5px 0;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  }
+}

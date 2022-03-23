@@ -5,6 +5,4 @@ export type AppContextValue = {
     isSearch: boolean;
 }
 
-const AppContext = React.createContext<AppContextValue | null>(null);
-
-export default AppContext;
+export const AppContext = React.createContext<AppContextValue | null>(null);

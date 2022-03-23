@@ -1,4 +1,5 @@
 @import "../../../scss/variables";
+@import "../../../scss/mixins";
 
 .wrapper {
   .menu {
@@ -9,13 +10,13 @@
     cursor: pointer;
     color: $white;
     text-transform: uppercase;
-    font-weight: 600;
-    font-size: 17px;
+    @include fontFamily(Inter-SemiBold, 17px);
     transform: rotate(-90deg);
     .icon {
       transform: rotate(90deg);
     }
     .text {
+      letter-spacing: 0.12em;
       padding-left: 18px;
     }
   }

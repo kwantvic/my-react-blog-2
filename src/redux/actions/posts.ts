@@ -4,10 +4,10 @@ import {ItemsParams} from "../reducers/posts";
 import {postsApi} from "../../api/api";
 import {setErrorDescription} from "./auth";
 
-export const getUserTotalPosts = (total: number) => ({
+export const getUserTotalPosts = (userTotalPosts: number) => ({
     type: "GET_USER_TOTAL_POSTS",
     payload: {
-        total
+        userTotalPosts
     }
 });
 export const getUserPagePosts = (items: ItemsParams[]) => ({

@@ -1,0 +1,23 @@
+@import "src/scss/variables";
+@import "src/scss/mixins";
+
+.editor {
+  border: 1px solid $grayBorder;
+  border-radius: 5px;
+  min-height: 300px;
+  font-family: Inter-Regular, Inter, Roboto, system-ui, Tahoma, sans-serif;
+
+  span {
+    padding-bottom: 0 !important;
+  }
+
+  .rdw-editor-main {
+    padding: 0 20px 10px;
+    word-break: break-all;
+    overflow: hidden;
+
+    span {
+      color: $blueText;
+    }
+  }
+}

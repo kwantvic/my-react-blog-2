@@ -13,7 +13,7 @@ type YellowButtonProps = {
 const YellowButton: React.FC<YellowButtonProps> = ({widthButton, heightButton, nameButton, onClick}) => {
     const buttonStyles = {
         width: widthButton,
-        height: heightButton,
+        height: heightButton
     };
     return (
         <Button onClick={onClick} style={buttonStyles} className={styles.button} variant="outlined"><span>{nameButton}</span></Button>

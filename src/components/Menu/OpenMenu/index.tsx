@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppContext, {AppContextValue} from "../../../context";
+import {AppContext, AppContextValue} from "../../../context";
 import styles from "./OpenMenu.module.scss";
 import Item from "../Item";
 import {useSelector} from "react-redux";

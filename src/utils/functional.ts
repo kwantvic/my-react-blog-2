@@ -15,3 +15,7 @@ export const getDate = (createdAt: string) => {
         })
     );
 };
+export const calcWidth = (widthDiv: number) => {
+    return (widthDiv / 4 - 60) * 2 - 41;
+}
+export const getNameValues = (name: string) => localStorage.getItem(name);

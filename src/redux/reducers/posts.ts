@@ -11,11 +11,12 @@ export interface ItemsParams {
     views: number;
     __v: number;
     _id: string;
+    imgUrl: string;
 }
 interface ActionGetUserTotalPosts {
     type: 'GET_USER_TOTAL_POSTS',
     payload: {
-        total: number
+        userTotalPosts: number
     }
 }
 interface ActionGetUserPagePosts {
@@ -24,15 +25,22 @@ interface ActionGetUserPagePosts {
         items: ItemsParams[]
     }
 }
+interface ActionChangeValueCreatePost {
+    type: 'CHANGE_VALUE_CREATE_POST',
+    payload: {
+        name: string,
+        value: string
+    }
+}
 
-type Action = ActionGetUserTotalPosts | ActionGetUserPagePosts;
+type Action = ActionGetUserTotalPosts | ActionGetUserPagePosts | ActionChangeValueCreatePost;
 
 export const postsReducer = (state = postsInitialState, action: Action) => {
     switch (action.type) {
         case 'GET_USER_TOTAL_POSTS': {
             return {
                 ...state,
-                total: action.payload.total
+                userTotalPosts: action.payload.userTotalPosts
             }
         }
         case 'GET_USER_PAGE_POSTS': {

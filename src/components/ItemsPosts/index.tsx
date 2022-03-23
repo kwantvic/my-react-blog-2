@@ -1,11 +1,13 @@
 import React from 'react';
-
-import styles from "./ItemsPosts.module.scss";
 import {useDispatch, useSelector} from "react-redux";
+
 import {RootState} from "../../redux";
 import {getUserPagePostsThunk} from "../../redux/actions/posts";
+import Post from "./Post";
+import styles from "./ItemsPosts.module.scss";
+import toBeContinued from "../../assets/img/newdesignillustrations190114260.jpeg";
 
-const ItemsPosts : React.FC = () => {
+const ItemsPosts: React.FC = () => {
     const posts = useSelector((state: RootState) => state.posts);
     const auth = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
@@ -17,8 +19,14 @@ const ItemsPosts : React.FC = () => {
     }, [auth.user._id, posts.currentPage, posts.pageSize, dispatch])
 
     return (
-        <div className={styles.wrapper}>
-            ItemsPosts
+        <div>
+            {posts.userTotalPosts ? posts.userPagePosts.map((obj) => {
+                return <Post key={obj._id} postsUserPage={obj}/>
+            }) :
+            <div className={styles.info}>
+                <p>Пользователь не создал ни единного поста😏</p>
+                <img src={toBeContinued} alt="to be continued..."/>
+            </div>}
         </div>
     );
 };

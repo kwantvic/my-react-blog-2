@@ -12,7 +12,7 @@
       height: 143px;
       padding-left: 43px;
       .name {
-        font-size: 26px;
+        @include fontFamily(Inter-ExtraBold, 26px);
         font-weight: 800;
         padding-top: 35px;
         padding-bottom: 14px;

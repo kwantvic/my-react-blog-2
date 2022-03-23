@@ -1,0 +1,78 @@
+@import "src/scss/variables";
+@import "src/scss/mixins";
+
+.wrapper {
+  width: $widthHalf;
+  padding: 67px 50px;
+
+  .span {
+    @include fontFamily(Inter-SemiBold, 16px);
+    color: #0A3465;
+
+  }
+
+  .title {
+    width: 100%;
+    padding-bottom: 25px;
+
+    input {
+      padding: 0 10px;
+      @include fontFamily(Inter-ExtraBold, 42px);
+      max-width: 100%;
+      width: 100%;
+      min-width: 100%;
+      border: 0;
+      border-radius: 10px;
+      @include inputFocus;
+
+      &:hover {
+        transform: scaleX(1.05);
+      }
+
+      &::placeholder {
+        color: $grayIcon;
+      }
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+
+    span {
+      padding-bottom: 7px;
+    }
+
+    textarea {
+      padding: 5px 10px;
+      min-height: 70px;
+      resize: none;
+      border: 1px solid $grayBorder;
+      border-radius: 10px;
+      @include fontFamily(Inter-Regular, 16px);
+      color: $blueText;
+      @include inputFocus;
+
+      &:hover {
+        border: $borderInputHover;
+      }
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      padding-bottom: 7px;
+    }
+  }
+
+  .buttons {
+    padding-top: 26px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

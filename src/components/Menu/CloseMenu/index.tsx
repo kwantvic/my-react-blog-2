@@ -1,7 +1,7 @@
 import React from 'react';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
-import AppContext, {AppContextValue} from "../../../context";
+import {AppContext, AppContextValue} from "../../../context";
 import styles from "./CloseMenu.module.scss";
 
 const CloseMenu : React.FC = () => {

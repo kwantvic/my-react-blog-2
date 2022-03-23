@@ -3,6 +3,8 @@ import {Dispatch} from "redux";
 import {UserParams} from "../reducers/auth";
 import {FormInput} from "../../components/AuthModal/LogIn";
 import {authApi, currentInstance} from "../../api/api";
+import {getUserPagePosts, getUserTotalPosts} from "./posts";
+import {postsInitialState} from "../reducers/initialState";
 
 export const logInAuth = (user: UserParams, isAuth: boolean) => ({
     type: "SET_AUTH",
@@ -31,10 +33,12 @@ export const registrationThunk = (data: FormInput) => async (dispatch: Dispatch)
                 localStorage.setItem('token', resp.token);
                 dispatch(logInAuth(resp, true));
                 currentInstance();
+                console.log("🧲logInAuth🏠authAction");
             })
     } catch (e: any) {
         console.log("🧲❌Ошибка при регистрации🥺", e.response.data.error);
         dispatch(setErrorDescription(e.response.data.error));
+        console.log("🧲setErrorDescription🏠authAction");
     }
 }
 export const logInThunk = (data: FormInput) => async (dispatch: Dispatch) => {
@@ -76,5 +80,7 @@ export const AuthMeThunk = () => async (dispatch: Dispatch) => {
 export const logOutThunk = () => (dispatch: Dispatch) => {
     localStorage.clear();
     dispatch(logInAuth({}, false));
+    dispatch(getUserTotalPosts(0));
+    dispatch(getUserPagePosts([]));
     currentInstance();
 };
