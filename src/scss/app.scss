@@ -9,22 +9,27 @@
   display: flex;
   position: relative;
 }
+
 .appWrapperOpen {
   position: absolute;
   left: calc(-400px + #{$widthCloseMenu} - 5px);
 }
+
 .itemsMenu {
   border-left: $borderItems;
   width: $widthHalf;
 
 }
+
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
   border-radius: 12px !important;
 }
+
 .tooltip {
   position: relative;
   display: inline-block;
 }
+
 .tooltip .tooltiptext {
   @include fontFamily(Inter-Regular, 14px);
   visibility: hidden;
@@ -41,6 +46,7 @@
   top: 135%;
   left: 50%;
 }
+
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -51,13 +57,35 @@
   border-style: solid;
   border-color: transparent transparent #555 transparent;
 }
+
 .tooltip .tooltiptext-logOut::after {
   margin-left: 8px;
 }
+
 .tooltip .tooltiptext-logIn::after {
   margin-left: 10px;
 }
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+  opacity: 0.6;
+}
+
+p.yupErrors {
+  position: absolute;
+  @include fontFamily(Inter-Regular, 14px);
+  color: #bf1650;
+  background-color: #f5e0e0;
+  margin-top: 2px;
+  padding: 0 10px;
+  border-radius: 5px;
+
+  &::before {
+    display: inline;
+    content: "⚠ ";
+  }
 }

@@ -5,9 +5,9 @@
   display: flex;
   padding: 26px 30px;
   border-bottom: $borderItems;
+  width: 100%;
 
   .body {
-    flex: 3;
     .header {
       font-family: Nunito, Inter, Roboto, system-ui, Tahoma, sans-serif;
       font-weight: 800;
@@ -15,16 +15,20 @@
       line-height: 30px;
       padding-bottom: 10px;
     }
+
     .description {
       @include fontFamily(Inter-Regular, 15px);
       color: $grayText;
       line-height: 24px;
       padding-bottom: 18px;
+      word-wrap: break-word;
     }
+
     .footer {
       display: flex;
       font-size: 14px;
       color: $grayText2;
+
       &__date {
         font-family: IBM Plex Sans, Inter, Roboto, system-ui, Tahoma, sans-serif;
         padding-right: 21px;
@@ -32,6 +36,7 @@
         letter-spacing: 0.01em;
         text-transform: uppercase;
       }
+
       &__views {
         span {
           color: $grayText2;
@@ -41,12 +46,14 @@
       }
     }
   }
+
   .img {
     flex: 1;
     &__inner {
       width: 100%;
       padding-top: 100%;
       position: relative;
+
       img {
         border-radius: 15px;
         position: absolute;

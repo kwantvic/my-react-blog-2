@@ -33,15 +33,6 @@
         border: $borderInputHover;
       }
     }
-    p {
-      position: absolute;
-      @include fontFamily(Inter-Regular, 14px);
-      color: #bf1650;
-    }
-    p::before {
-      display: inline;
-      content: "⚠ ";
-    }
   }
   .password {
     position: relative;

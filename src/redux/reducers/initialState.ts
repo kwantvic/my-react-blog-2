@@ -23,6 +23,7 @@ interface PostsInitialStateParams {
     userPagePosts: ItemsParams[];
     fullPost: {};
     currentPostId: number | null;
+    urlImgEditPost: string;
 }
 
 export const authInitialState: AuthInitialStateParams = {
@@ -40,5 +41,6 @@ export const postsInitialState: PostsInitialStateParams = {
     currentPage: 1,
     userPagePosts: [],
     fullPost: {},
-    currentPostId: null
+    currentPostId: null,
+    urlImgEditPost: ""
 };

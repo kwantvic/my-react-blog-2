@@ -17,8 +17,15 @@
     @include fontFamily(Inter-SemiBold, 16px);
   }
 
+  &:disabled {
+    background: red !important;
+  }
+
   &:hover {
     background: $greenHover !important;
   }
+
 }
+
+
 

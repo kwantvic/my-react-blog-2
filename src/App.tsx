@@ -10,7 +10,7 @@ import ItemsPosts from "./components/ItemsPosts";
 import {RootState} from "./redux";
 import {AuthMeThunk} from "./redux/actions/auth";
 import ActionAlerts from "./components/UiComponents/ActionAlerts";
-import CreatePost from "./components/CreatePost";
+import {CreatePost} from "./components/CreatePost";
 
 interface PrivateWrapperProps {
     isAuth: any;

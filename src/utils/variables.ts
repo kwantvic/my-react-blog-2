@@ -1,0 +1,1 @@
+export const createPostNameValues = ["title", "description", "imgUrl", "text"];

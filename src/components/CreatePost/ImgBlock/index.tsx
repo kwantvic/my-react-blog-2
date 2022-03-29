@@ -2,53 +2,44 @@ import React from 'react';
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 import styles from "./ImgBlock.module.scss";
-import GreenButton from "../../UiComponents/GreenButton";
 import {calcWidth} from "../../../utils/functional";
+import GreenButton from "../../UiComponents/GreenButton";
 
-type ImgBlockProps = {
-    imgFile: File | undefined;
-    setImgFile: (file: File) => void;
-    uploadImgFile: () => void;
+interface ImgBlockProps {
+    title: string;
+    imgUrl: string;
+    handleImgChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     widthDiv: number;
 }
 
-const ImgBlock: React.FC<ImgBlockProps> = ({imgFile, setImgFile, uploadImgFile, widthDiv}) => {
+export const ImgBlock: React.FC<ImgBlockProps> = React.memo(({imgUrl, title, handleImgChange, widthDiv}) => {
 
-    const handleImgChange = function (e: React.ChangeEvent<HTMLInputElement>) {
-        const fileList = e.target.files;
-        if (!fileList) return;
-        setImgFile(fileList[0]);
-    }
     return (
         <div className={styles.wrapper}>
             <span className={styles.span}>Ссылка на изображение:</span>
             <div className={styles.form}>
                 <div className={styles.input}>
-                    <input readOnly={true} type="text" value={imgFile ? URL.createObjectURL(imgFile) : ""}
-                           onChange={handleImgChange}/>
+                    <input readOnly={true} type="text" value={imgUrl}/>
                 </div>
-                <label htmlFor="img">
+                <label htmlFor="imgFile">
                     <input
-                        type="file"
-                        accept="image/*"
+                        type="file" accept="image/*" id="imgFile" name="imgFile" multiple={false}
                         style={{display: "none"}}
-                        id="img"
-                        name="img"
-                        multiple={false}
                         onChange={handleImgChange}
                     />
-                    <GreenButton click={uploadImgFile} widthButton={"145px"} heightButton={"100%"}
-                                 nameButton={"Загрузить"} icon={<UploadFileIcon/>}/>
+                    {/*todo: fix double-click*/}
+                    <GreenButton widthButton={"145px"}
+                                 heightButton={"100%"}
+                                 nameButton={"Загрузить"}
+                                 icon={<UploadFileIcon/>}/>
                 </label>
             </div>
-            {(imgFile && imgFile.type.match(/image\/*/)) && (
+            {imgUrl && (
                 <div className={styles.img}>
                     <img style={{width: calcWidth(widthDiv), height: calcWidth(widthDiv)}}
-                         src={URL.createObjectURL(imgFile)} alt={imgFile.name}/>
+                         src={imgUrl} alt={title}/>
                 </div>
             )}
         </div>
     );
-};
-
-export default ImgBlock;
+});

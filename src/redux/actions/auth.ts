@@ -2,9 +2,10 @@ import {Dispatch} from "redux";
 
 import {UserParams} from "../reducers/auth";
 import {FormInput} from "../../components/AuthModal/LogIn";
-import {authApi, currentInstance} from "../../api/api";
+import {currentInstance} from "../../api";
+import {authApi} from "../../api/auth"
+
 import {getUserPagePosts, getUserTotalPosts} from "./posts";
-import {postsInitialState} from "../reducers/initialState";
 
 export const logInAuth = (user: UserParams, isAuth: boolean) => ({
     type: "SET_AUTH",
@@ -33,12 +34,10 @@ export const registrationThunk = (data: FormInput) => async (dispatch: Dispatch)
                 localStorage.setItem('token', resp.token);
                 dispatch(logInAuth(resp, true));
                 currentInstance();
-                console.log("🧲logInAuth🏠authAction");
             })
     } catch (e: any) {
-        console.log("🧲❌Ошибка при регистрации🥺", e.response.data.error);
+        console.log("🧲❌Ошибка при регистрации.", e.response.data.error);
         dispatch(setErrorDescription(e.response.data.error));
-        console.log("🧲setErrorDescription🏠authAction");
     }
 }
 export const logInThunk = (data: FormInput) => async (dispatch: Dispatch) => {
@@ -56,13 +55,13 @@ export const logInThunk = (data: FormInput) => async (dispatch: Dispatch) => {
                                 dispatch(getDataAt(resp));
                             })
                     } catch (e: any) {
-                        console.log("🧲❌Ошибка при загрузке данных пользователя🥺", e.response.data.error);
+                        console.log("🧲❌Ошибка при загрузке данных пользователя.", e.response.data.error);
                         dispatch(setErrorDescription("Ошибка при загрузке данных пользователя, повторите попытку"));
                     }
                 })
             )
     } catch (e: any) {
-        console.log("🧲❌Ошибка при входе🥺", e);
+        console.log("🧲❌Ошибка при входе.", e);
         dispatch(setErrorDescription("Неверный логин или пароль, повторите попытку"));
     }
 };
@@ -73,7 +72,7 @@ export const AuthMeThunk = () => async (dispatch: Dispatch) => {
                 dispatch(logInAuth(resp.data, true));
             })
     } catch (e: any) {
-        console.log("🧲❌Ошибка при авторизации🥺", e.message);
+        console.log("🧲❌Ошибка при авторизации.", e.message);
         dispatch(setErrorDescription(e.message));
     }
 }

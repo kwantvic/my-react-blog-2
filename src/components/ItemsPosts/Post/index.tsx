@@ -16,7 +16,7 @@ const Post: React.FC<PostProps> = ({postsUserPage}) => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.body}>
+            <div style={{width: !postsUserPage.imgUrl ? "75%" : "100%"}} className={styles.body}>
                 <div className={styles.header}>
                     {postsUserPage.title}
                 </div>

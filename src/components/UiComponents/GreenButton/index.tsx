@@ -5,19 +5,18 @@ import styles from "./GreenButton.module.scss";
 
 type GreenButtonProps = {
     widthButton: string;
-    heightButton?: string;
+    heightButton: string;
     nameButton: string;
-    click: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
-    icon?: JSX.Element;
+    icon: JSX.Element;
 }
 
-const GreenButton: React.FC<GreenButtonProps> = ({widthButton, heightButton, nameButton, icon, click}) => {
+const GreenButton: React.FC<GreenButtonProps> = ({widthButton, heightButton, nameButton, icon}) => {
     const buttonStyles = {
         width: widthButton,
         height: heightButton
     };
     return (
-        <Button component="span" onClick={click} style={buttonStyles} className={styles.button} variant="outlined">
+        <Button component="span" style={buttonStyles} className={styles.button} variant="outlined">
             <div className={styles.icon}>{icon && icon}</div>
             <span>{nameButton}</span>
         </Button>

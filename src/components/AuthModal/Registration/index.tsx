@@ -38,7 +38,7 @@ const Registration: React.FC<RegistrationProps> = ({onClose}) => {
         formState: {errors},
         reset
     } = useForm<FormInput>({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(schema)
     });
 
     const togglePassword = () => {
@@ -57,17 +57,17 @@ const Registration: React.FC<RegistrationProps> = ({onClose}) => {
             <div className={styles.name}>
                 <label>Имя и фамилия</label>
                 <input {...register('fullName')}/>
-                {errors?.fullName && <p>{errors.fullName.message}</p>}</div>
+                {errors?.fullName && <p className="yupErrors">{errors.fullName.message}</p>}</div>
             <div className={styles.email}>
                 <label>Email</label>
                 <input {...register('email')}/>
-                {errors?.email && <p>{errors.email.message}</p>}</div>
+                {errors?.email && <p className="yupErrors">{errors.email.message}</p>}</div>
             <div className={styles.password}>
                 <label>Пароль</label>
                 <input {...register('password')}
                        type={!passwordVisibility ? "password" : "text"}/>
                 <i onClick={togglePassword}>{passwordVisibility ? <VisibilityIcon/> : <VisibilityOffIcon/>}</i>
-                {errors?.password && <p>{errors.password.message}</p>}</div>
+                {errors?.password && <p className="yupErrors">{errors.password.message}</p>}</div>
             <div onClick={handleSubmit(onSubmit)} className={`${styles.button} ${styles.buttonAuth}`}>
                 <YellowButton widthButton={"100%"}
                               heightButton={"49px"}

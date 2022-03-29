@@ -66,7 +66,7 @@ const LogIn: React.FC<LogInProps> = ({onClose, onRegistration, onChange, inputVa
                 <input {...register('email')}
                        onChange={onChange}
                        value={inputValue.email}/>
-                {errors?.email && <p>{errors.email.message}</p>}</div>
+                {errors?.email && <p className="yupErrors">{errors.email.message}</p>}</div>
             <div className={styles.password}>
                 <label>Пароль</label>
                 <input {...register('password')}
@@ -74,7 +74,7 @@ const LogIn: React.FC<LogInProps> = ({onClose, onRegistration, onChange, inputVa
                        onChange={onChange}
                        value={inputValue.password}/>
                 <i onClick={togglePassword}>{passwordVisibility ? <VisibilityIcon/> : <VisibilityOffIcon/>}</i>
-                {errors?.password && <p>{errors.password.message}</p>}</div>
+                {errors?.password && <p className="yupErrors">{errors.password.message}</p>}</div>
             <div onClick={handleSubmit(onSubmit)} className={`${styles.button} ${styles.buttonIn}`}>
                 <YellowButton
                     widthButton={"100%"}

@@ -12,18 +12,19 @@ type ContentFn = (current: string) => string;
 interface WYSIWYGEditorProps {
     value: string;
     toChange: (fn: ContentFn) => void;
+    toSetValues: (name: string) => void;
 }
 
 // todo: save value for editorState on reload
-const WYSIWYGEditor: React.FC<WYSIWYGEditorProps> = ({value, toChange}) => {
+export const WYSIWYGEditor: React.FC<WYSIWYGEditorProps> = React.memo(({value, toChange, toSetValues}) => {
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     // React.useEffect(() => {
     //     getNameValues("values-text") !== null && setEditorState(getNameValues("values-text"))
     // }, [])
     const onEditorStateChange = (editorState: any) => {
         setEditorState(editorState);
-        console.log("PROPS ==> ", value);
         localStorage.setItem("values-text", draftToHtml(convertToRaw(editorState.getCurrentContent())));
+        toSetValues("text");
         return toChange(draftToHtml(convertToRaw(editorState.getCurrentContent())));
     };
 
@@ -39,6 +40,4 @@ const WYSIWYGEditor: React.FC<WYSIWYGEditorProps> = ({value, toChange}) => {
             </div>
         </React.Fragment>
     );
-};
-
-export default WYSIWYGEditor;
+});
