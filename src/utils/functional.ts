@@ -19,3 +19,11 @@ export const calcWidth = (widthDiv: number) => {
     return (widthDiv / 4 - 60) * 2 - 41;
 }
 export const getNameValues = (name: string) => localStorage.getItem(name);
+
+export const scrollToTop = () => {
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+}

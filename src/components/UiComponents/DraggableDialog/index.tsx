@@ -2,17 +2,17 @@ import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import LogoutIcon from "@mui/icons-material/Logout";
 import YellowButton from "../YellowButton";
 
 import styles from "./DraggableDialog.module.scss";
 
 type DraggableDialogProps = {
     title: string;
-    onLogOut: () => void;
+    onAction: () => void;
+    component: JSX.Element;
 }
 
-const DraggableDialog: React.FC<DraggableDialogProps> = ({title, onLogOut}) => {
+const DraggableDialog: React.FC<DraggableDialogProps> = ({title, onAction, component}) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -25,7 +25,7 @@ const DraggableDialog: React.FC<DraggableDialogProps> = ({title, onLogOut}) => {
 
     return (
         <div className={styles.wrapper}>
-            <LogoutIcon onClick={handleClickOpen} style={{cursor: "pointer"}}/>
+            <div className={styles.icon} onClick={handleClickOpen}>{component}</div>
             <Dialog
                 className={styles.wrapper}
                 open={open}
@@ -35,9 +35,9 @@ const DraggableDialog: React.FC<DraggableDialogProps> = ({title, onLogOut}) => {
                 <DialogTitle className={styles.title} id="draggable-dialog-title">
                     {title}
                 </DialogTitle>
-                <DialogActions>
-                    <YellowButton onClick={handleClose} widthButton={"50px"} heightButton={"45px"} nameButton={"Нет"}/>
-                    <YellowButton onClick={onLogOut} widthButton={"50px"} heightButton={"45px"} nameButton={"Да"}/>
+                <DialogActions className={styles.btn}>
+                    <YellowButton onClick={handleClose} nameButton={"Нет"}/>
+                    <YellowButton onClick={onAction} nameButton={"Да"}/>
                 </DialogActions>
             </Dialog>
         </div>

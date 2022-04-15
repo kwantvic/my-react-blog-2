@@ -1,5 +1,4 @@
 @import "../../../src/scss/variables";
-@import "../../../src/scss/mixins";
 
 .wrapper {
   width: 100%;
@@ -35,36 +34,6 @@
     button {
       span {
         padding-top: 5px;
-      }
-    }
-  }
-
-  .pages {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 40px 30px;
-
-    .btns {
-      .icon {
-        color: $black;
-      }
-
-      button {
-        background-color: #F9F9F9;
-
-        &:disabled {
-          opacity: 0.4;
-        }
-      }
-    }
-
-    .infoPages {
-      margin-left: auto;
-
-      span {
-        @include fontFamily(Inter-Medium, 18px);
-        color: $grayText;
       }
     }
   }

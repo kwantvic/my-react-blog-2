@@ -27,7 +27,6 @@ const schema = yup.object().shape({
 })
 
 export const CreatePost: React.FC = () => {
-    console.log("🏠CreatePost");
     const posts = useSelector((state: RootState) => state.posts);
     const dispatch = useDispatch();
     const [imgFileSelected, setImgFileSelected] = React.useState<File>();
@@ -106,7 +105,7 @@ export const CreatePost: React.FC = () => {
         dispatch(addPostThunk({
             title: data.title,
             description: data.description,
-            imgUrl: values.imgUrl,
+            photoUrl: values.imgUrl,
             text: data.editorContent
         }));
         onReset();
@@ -156,9 +155,8 @@ export const CreatePost: React.FC = () => {
                     <p style={{left: 200}} className="yupErrors">{errors.editorContent.message}</p>}
             </div>
             <div className={styles.buttons}>
-                <YellowButton widthButton={"160px"} heightButton={"45px"} nameButton={"Отмена"}/>
-                <YellowButton onClick={handleSubmit(onSubmit)} widthButton={"160px"} heightButton={"45px"}
-                              nameButton={"Опубликовать"}/>
+                <YellowButton nameButton={"Отмена"}/>
+                <YellowButton onClick={handleSubmit(onSubmit)} nameButton={"Опубликовать"}/>
             </div>
         </div>
     );

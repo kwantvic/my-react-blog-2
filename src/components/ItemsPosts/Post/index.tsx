@@ -1,41 +1,49 @@
 import React from 'react';
+import {Link, useLocation} from "react-router-dom";
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import {useDispatch} from "react-redux";
 
 import styles from "./Post.module.scss";
-import img from "../../../assets/img/jscodeimg.jpeg";
 import {ItemsParams} from "../../../redux/reducers/posts";
-import {getDate} from '../../../utils/functional';
-
-const eyeStyle = {height: 20, color: "#E2E2E2", paddingBottom: 1};
+import {getDate, scrollToTop} from '../../../utils/functional';
+import {updateViewsPostThunk} from "../../../redux/actions/posts";
+import {useUserPagePostsSelector} from "../../../redux/selectors";
 
 type PostProps = {
-    postsUserPage: ItemsParams
+    postsUserPage: ItemsParams;
 }
 
-const Post: React.FC<PostProps> = ({postsUserPage}) => {
+export const Post: React.FC<PostProps> = React.memo(({postsUserPage}) => {
+    const dispatch = useDispatch();
+    const activeId = useLocation().pathname.replace('/post/', '');
+    function onClickPost() {
+        dispatch(updateViewsPostThunk(postsUserPage._id));
+        scrollToTop();
+    }
 
     return (
-        <div className={styles.wrapper}>
-            <div style={{width: !postsUserPage.imgUrl ? "75%" : "100%"}} className={styles.body}>
+        <div
+            className={activeId === postsUserPage._id ? `${styles.wrapper} ${styles.wrapper__active}` : styles.wrapper}>
+            <div
+                className={postsUserPage.photoUrl ? `${styles.body} ${styles.withImg}` : `${styles.body} ${styles.withoutImg}`}>
                 <div className={styles.header}>
-                    {postsUserPage.title}
+                    <Link to={`/post/${postsUserPage._id}`}><p onClick={onClickPost}>{postsUserPage.title}</p></Link>
                 </div>
                 <div className={styles.description}>
                     {postsUserPage.description}
                 </div>
                 <div className={styles.footer}>
                     <div className={styles.footer__date}>{getDate(postsUserPage.createdAt)}</div>
-                    <div className={styles.footer__views}><VisibilityIcon
-                        style={eyeStyle}/><span>{postsUserPage.views}</span></div>
+                    <div className={styles.footer__views}>
+                        <VisibilityIcon className={styles.eye}/><span>{postsUserPage.views}</span>
+                    </div>
                 </div>
             </div>
-            {!postsUserPage.imgUrl && <div className={styles.img}>
+            {postsUserPage.photoUrl && <div className={styles.img}>
                 <div className={styles.img__inner}>
-                    <img src={img} alt="post img"/>
+                    <img src={postsUserPage.photoUrl} alt="post img"/>
                 </div>
             </div>}
         </div>
     );
-};
-
-export default Post;
+});

@@ -77,14 +77,10 @@ const LogIn: React.FC<LogInProps> = ({onClose, onRegistration, onChange, inputVa
                 {errors?.password && <p className="yupErrors">{errors.password.message}</p>}</div>
             <div onClick={handleSubmit(onSubmit)} className={`${styles.button} ${styles.buttonIn}`}>
                 <YellowButton
-                    widthButton={"100%"}
-                    heightButton={"49px"}
                     nameButton={"Войти"}/></div>
             <hr/>
             <div onClick={onRegistration} className={`${styles.button} ${styles.buttonAuth}`}>
                 <YellowButton
-                    widthButton={"100%"}
-                    heightButton={"49px"}
                     nameButton={"Зарегистрироваться"}/></div>
         </div>
     );

@@ -4,19 +4,13 @@ import Button from '@mui/material/Button';
 import styles from "./YellowButton.module.scss";
 
 type YellowButtonProps = {
-    widthButton: string;
-    heightButton: string;
-    nameButton: string;
+    nameButton: string | JSX.Element;
     onClick?: () => void;
 }
 
-const YellowButton: React.FC<YellowButtonProps> = ({widthButton, heightButton, nameButton, onClick}) => {
-    const buttonStyles = {
-        width: widthButton,
-        height: heightButton
-    };
+const YellowButton: React.FC<YellowButtonProps> = ({nameButton, onClick}) => {
     return (
-        <Button onClick={onClick} style={buttonStyles} className={styles.button} variant="outlined"><span>{nameButton}</span></Button>
+        <Button onClick={onClick} className={styles.button} variant="outlined"><span>{nameButton}</span></Button>
     );
 };
 

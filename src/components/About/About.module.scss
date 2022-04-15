@@ -6,6 +6,7 @@
   padding-left: 60px;
   padding-right: 60px;
   padding-top: 102px;
+
   .header {
     h1 {
       @include fontFamily(Inter-ExtraDold, 72px);
@@ -20,6 +21,7 @@
       @include fontFamily(Inter-Light, 34px);
       font-weight: 500;
       color: $grayWhite;
+      word-wrap: break-word;
     }
   }
   .avatar {

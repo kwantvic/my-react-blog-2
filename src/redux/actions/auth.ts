@@ -6,6 +6,7 @@ import {currentInstance} from "../../api";
 import {authApi} from "../../api/auth"
 
 import {getUserPagePosts, getUserTotalPosts} from "./posts";
+import {LoadingStatus} from "../../modules/loadingStatus";
 
 export const logInAuth = (user: UserParams, isAuth: boolean) => ({
     type: "SET_AUTH",
@@ -20,6 +21,12 @@ export const getDataAt = (user: UserParams) => ({
         user
     },
 });
+export const changeStatusReady = (x: LoadingStatus) => ({
+    type: "CHANGE_STATUS_READY",
+    payload: {
+        x
+    },
+});
 export const setErrorDescription = (errorDescription: string) => ({
     type: "SET_ERROR_DESCRIPTION",
     payload: {
@@ -29,12 +36,14 @@ export const setErrorDescription = (errorDescription: string) => ({
 
 export const registrationThunk = (data: FormInput) => async (dispatch: Dispatch) => {
     try {
+        dispatch(changeStatusReady(0));
         await authApi.registration(data)
             .then((resp) => {
                 localStorage.setItem('token', resp.token);
                 dispatch(logInAuth(resp, true));
                 currentInstance();
             })
+            .then(() => dispatch(changeStatusReady(1)));
     } catch (e: any) {
         console.log("🧲❌Ошибка при регистрации.", e.response.data.error);
         dispatch(setErrorDescription(e.response.data.error));
@@ -42,6 +51,7 @@ export const registrationThunk = (data: FormInput) => async (dispatch: Dispatch)
 }
 export const logInThunk = (data: FormInput) => async (dispatch: Dispatch) => {
     try {
+        dispatch(changeStatusReady(0));
         await authApi.logIn(data)
             .then((resp) => {
                 localStorage.setItem('token', resp.token);
@@ -60,17 +70,20 @@ export const logInThunk = (data: FormInput) => async (dispatch: Dispatch) => {
                     }
                 })
             )
+            .then(() => dispatch(changeStatusReady(1)));
     } catch (e: any) {
         console.log("🧲❌Ошибка при входе.", e);
         dispatch(setErrorDescription("Неверный логин или пароль, повторите попытку"));
     }
 };
 export const AuthMeThunk = () => async (dispatch: Dispatch) => {
+    dispatch(changeStatusReady(0));
     try {
         await authApi.authMe()
             .then((resp) => {
                 dispatch(logInAuth(resp.data, true));
             })
+            .then(() => dispatch(changeStatusReady(1)));
     } catch (e: any) {
         console.log("🧲❌Ошибка при авторизации.", e.message);
         dispatch(setErrorDescription(e.message));

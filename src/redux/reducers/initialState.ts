@@ -1,10 +1,12 @@
 import {UserParams} from "./auth";
 import {ItemsParams} from "./posts";
+import {LoadingStatus} from "../../modules/loadingStatus";
 
-export interface CreatePostParams {
+export interface PostParams {
+    _id: string;
     title: string,
     description: string,
-    imgUrl: string,
+    photoUrl: string,
     text: string
 }
 
@@ -12,11 +14,11 @@ export interface AuthInitialStateParams {
     mainId: string;
     user: UserParams;
     isAuth: boolean;
-    isReady: boolean;
-    isLoading: boolean;
+    loadingStatus: LoadingStatus;
     errorDescription: string;
 }
 interface PostsInitialStateParams {
+    loadingStatus: LoadingStatus;
     pageSize: number;
     currentPage: number;
     userTotalPosts: number;
@@ -27,15 +29,15 @@ interface PostsInitialStateParams {
 }
 
 export const authInitialState: AuthInitialStateParams = {
-    isReady: false,
+    loadingStatus: 0,
     mainId: "62060350fa97f50bae2663eb",
     user: {},
     isAuth: false,
-    isLoading: false,
     errorDescription: ""
 };
 
 export const postsInitialState: PostsInitialStateParams = {
+    loadingStatus: 0,
     userTotalPosts: 0,
     pageSize: 5,
     currentPage: 1,

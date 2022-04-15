@@ -9,6 +9,7 @@ import AuthModal from "../AuthModal";
 import {logOutThunk} from "../../redux/actions/auth";
 import DraggableDialog from "../UiComponents/DraggableDialog";
 import {Link} from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header: React.FC = () => {
     const auth = useSelector((state: RootState) => state.auth);
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
                                 <span className="tooltiptext" style={{marginLeft: "-47px"}}>Написать</span></div>
                         </Link>
                         <div className="tooltip">
-                            <DraggableDialog onLogOut={onLogOut} title={"Вы действительно хотите выйти?"}/>
+                            <DraggableDialog onAction={onLogOut} title={"Вы действительно хотите выйти?"} component={<LogoutIcon/>}/>
                             <span className="tooltiptext tooltiptext-logOut" style={{marginLeft: "-55px"}}>Выйти</span>
                         </div>
                     </>

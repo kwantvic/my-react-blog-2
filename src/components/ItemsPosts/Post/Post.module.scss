@@ -6,20 +6,110 @@
   padding: 26px 30px;
   border-bottom: $borderItems;
   width: 100%;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: $blueText;
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  &:hover {
+    background-color: $postHover;
+
+    &:before {
+      width: 5px;
+      transition: 0.2s;
+    }
+  }
+
+  &__active {
+    &:before {
+      content: "";
+      position: absolute;
+      background-color: $yellow;
+      width: 10px;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    &:hover {
+      &:before {
+        width: 10px;
+      }
+    }
+  }
+
+  .withImg {
+    width: 75%;
+  }
+
+  .withoutImg {
+    width: 100%;
+  }
 
   .body {
+    display: flex;
+    flex-direction: column;
+
     .header {
       font-family: Nunito, Inter, Roboto, system-ui, Tahoma, sans-serif;
       font-weight: 800;
       font-size: 24px;
       line-height: 30px;
       padding-bottom: 10px;
+      padding-right: 10px;
+      cursor: pointer;
+
+      p {
+        overflow-wrap: break-word;
+        background-image: linear-gradient(
+                        to right,
+                        #13315E,
+                        #13315E 50%,
+                        #000 50%
+        );
+        background-size: 200% 100%;
+        background-position: -100%;
+        //display: inline-block;
+        position: relative;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease-in-out;
+
+        &:before {
+          content: '';
+          background: #13315E;
+          display: block;
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          width: 0;
+          height: 3px;
+          transition: all 0.3s ease-in-out;
+        }
+
+        &:hover {
+          background-position: 0;
+        }
+
+        &:hover::before {
+          width: 100%;
+        }
+
+      }
     }
 
     .description {
       @include fontFamily(Inter-Regular, 15px);
       color: $grayText;
       line-height: 24px;
+      padding-right: 10px;
       padding-bottom: 18px;
       word-wrap: break-word;
     }
@@ -28,6 +118,7 @@
       display: flex;
       font-size: 14px;
       color: $grayText2;
+      margin-top: auto;
 
       &__date {
         font-family: IBM Plex Sans, Inter, Roboto, system-ui, Tahoma, sans-serif;
@@ -44,11 +135,18 @@
           position: absolute;
         }
       }
+
+      .eye {
+        height: 20px;
+        color: #E2E2E2;
+        padding-bottom: 1px;
+      }
     }
   }
 
   .img {
     flex: 1;
+
     &__inner {
       width: 100%;
       padding-top: 100%;
@@ -62,6 +160,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        box-shadow: 3px 3px 6px 4px #888;
       }
     }
   }

@@ -1,0 +1,57 @@
+@import "../../../../src/scss/variables";
+
+.wrapper {
+  display: flex;
+  padding: 26px 30px;
+  border-bottom: $borderItems;
+  width: 100%;
+
+  .body {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      padding-top: 0;
+      padding-right: 10px;
+      height: 50px;
+
+      .titleSkeleton {
+        height: 100%;
+        margin-top: -10px;
+      }
+    }
+
+    .description {
+      padding-right: 10px;
+      padding-bottom: 18px;
+
+      .descrSkeleton {
+        height: 30px;
+      }
+    }
+
+    .footer {
+      width: 50%;
+      margin-top: auto;
+
+      .footerSkeleton {
+        height: 30px;
+      }
+    }
+  }
+
+  .img {
+    flex: 1;
+
+    .imgSkeleton {
+      position: relative;
+      border-radius: 15px;
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+    }
+  }
+}
+
+

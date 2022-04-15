@@ -16,9 +16,12 @@
 }
 
 .itemsMenu {
-  border-left: $borderItems;
   width: $widthHalf;
+  border-left: $borderItems;
+}
 
+.leftHalf {
+  width: $widthHalf;
 }
 
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
@@ -60,6 +63,10 @@
 
 .tooltip .tooltiptext-logOut::after {
   margin-left: 8px;
+}
+
+.tooltip .tooltiptext-delPost::after {
+  margin-left: 20px;
 }
 
 .tooltip .tooltiptext-logIn::after {

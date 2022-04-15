@@ -3,7 +3,7 @@ import {instance} from "./index";
 export interface DataCreatePostParams {
     title: string;
     description?: string;
-    imgUrl?: string;
+    photoUrl?: string;
     text: string;
 }
 
@@ -25,6 +25,9 @@ export const postsApi = {
         return instance
             .post('/posts', data)
             .then((resp) => resp.data);
+    },
+    updateViews(id: string) {
+        return instance
+            .get(`/posts/${id}`);
     }
-
 }

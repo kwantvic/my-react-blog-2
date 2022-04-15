@@ -5,22 +5,27 @@
 .wrapper {
   width: 446px;
   padding: 30px 40px;
+
   .header {
     display: flex;
     justify-content: space-between;
     padding-bottom: 15px;
+
     p {
-        @include fontFamily(Inter-Bold, 26px);
-      }
+      @include fontFamily(Inter-Bold, 26px);
+    }
   }
+
   .name, .email, .password {
     position: relative;
     padding-bottom: 20px;
+
     label {
       @include fontFamily(Inter-SemiBold, 13px);
       display: block;
       padding-bottom: 10px;
     }
+
     input {
       width: 100%;
       height: 48px;
@@ -29,16 +34,20 @@
       padding-left: 15px;
       border-radius: 12px;
       @include inputFocus;
+
       &:hover {
         border: $borderInputHover;
       }
     }
   }
+
   .password {
     position: relative;
+
     input {
       padding-right: 45px;
     }
+
     i {
       position: absolute;
       right: 10px;
@@ -47,13 +56,26 @@
       cursor: pointer;
     }
   }
+
   .buttonIn {
     padding-top: 15px;
     padding-bottom: 17px;
+
+    button {
+      width: 100%;
+      height: 49px;
+    }
   }
+
   .buttonAuth {
     padding-top: 15px;
+
+    button {
+      width: 100%;
+      height: 49px;
+    }
   }
+
   hr {
     border: 0;
     height: 1px;

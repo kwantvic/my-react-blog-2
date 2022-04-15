@@ -4,6 +4,7 @@ import {ItemsParams} from "../reducers/posts";
 import {DataCreatePostParams, postsApi} from "../../api/posts";
 import {setErrorDescription} from "./auth";
 import {createPostNameValues} from "../../utils/variables";
+import {LoadingStatus} from "../../modules/loadingStatus";
 
 export const getUserTotalPosts = (userTotalPosts: number) => ({
     type: "GET_USER_TOTAL_POSTS",
@@ -13,6 +14,12 @@ export const getUserTotalPosts = (userTotalPosts: number) => ({
 });
 export const getUserPagePosts = (items: ItemsParams[]) => ({
     type: "GET_USER_PAGE_POSTS",
+    payload: {
+        items
+    }
+});
+export const getUserPagePostsMore = (items: ItemsParams[]) => ({
+    type: "GET_USER_PAGE_POSTS_MORE",
     payload: {
         items
     }
@@ -29,13 +36,40 @@ export const addPost = (data: DataCreatePostParams) => ({
         data
     }
 });
+export const changeStatus = (status: LoadingStatus) => ({
+    type: "CHANGE_STATUS",
+    payload: {
+        status
+    }
+});
+export const changeCurrentPage = (n: number) => ({
+    type: "CHANGE_CURRENT_PAGE",
+    payload: {
+        n
+    }
+});
+export const changePageSize = (n: number) => ({
+    type: "CHANGE_PAGE_SIZE",
+    payload: {
+        n
+    }
+});
 
 export const getUserPagePostsThunk = (currentPage: number, pageSize: number, id: string | undefined) => async (dispatch: Dispatch) => {
     try {
+        // (currentPage === 1) && dispatch(changeStatus(0));
+        dispatch(changeStatus(0));
         await postsApi.getUserPagePosts(currentPage, pageSize, id)
             .then((resp) => {
-                dispatch(getUserTotalPosts(resp.total));
+                // (currentPage !== 1)
+                //     ? dispatch(getUserPagePostsMore(resp.items))
+                //     : dispatch(getUserPagePosts(resp.items));
                 dispatch(getUserPagePosts(resp.items));
+                dispatch(getUserTotalPosts(resp.total));
+            })
+            .then(() => {
+                // (currentPage === 1) && dispatch(changeStatus(1));
+                dispatch(changeStatus(1));
             })
     } catch (e: any) {
         console.log("🧲❌Ошибка при загрузке постов.", e);
@@ -53,7 +87,7 @@ export const uploadImgFileThunk = (formData: any) => async (dispatch: Dispatch) 
         console.log("🧲❌Ошибка при загрузке изображения поста.", e);
         dispatch(setErrorDescription("Ошибка при загрузке изображения поста"));
     }
-}
+};
 export const addPostThunk = (data: DataCreatePostParams) => async (dispatch: Dispatch) => {
     try {
         await postsApi.addPost(data)
@@ -69,4 +103,7 @@ export const addPostThunk = (data: DataCreatePostParams) => async (dispatch: Dis
         console.log("🧲❌Ошибка при загрузке поста.", e);
         dispatch(setErrorDescription("Ошибка при загрузке поста"));
     }
+};
+export const updateViewsPostThunk = (id: string) => async (dispatch: Dispatch) => {
+    await postsApi.updateViews(id);
 }

@@ -1,4 +1,5 @@
 import {authInitialState} from "./initialState";
+import {LoadingStatus} from "../../modules/loadingStatus";
 
 export interface UserParams {
     _id?: string;
@@ -23,14 +24,20 @@ interface ActionGetDataAt {
         user: UserParams
     }
 }
-interface SetErrorDescription {
+interface ActionSetErrorDescription {
     type: 'SET_ERROR_DESCRIPTION',
     payload: {
         errorDescription: string
     }
 }
+interface ActionChangeStatusReady {
+    type: 'CHANGE_STATUS_READY',
+    payload: {
+        x: LoadingStatus
+    }
+}
 
-type Action = ActionSetAuth | ActionGetDataAt | SetErrorDescription;
+type Action = ActionSetAuth | ActionGetDataAt | ActionSetErrorDescription | ActionChangeStatusReady;
 
 export const authReducer = (state = authInitialState, action: Action) => {
     switch (action.type) {
@@ -53,6 +60,12 @@ export const authReducer = (state = authInitialState, action: Action) => {
             return {
                 ...state,
                 errorDescription: action.payload.errorDescription
+            }
+        }
+        case 'CHANGE_STATUS_READY': {
+            return {
+                ...state,
+                loadingStatus: action.payload.x
             }
         }
     }

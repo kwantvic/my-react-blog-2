@@ -69,9 +69,7 @@ const Registration: React.FC<RegistrationProps> = ({onClose}) => {
                 <i onClick={togglePassword}>{passwordVisibility ? <VisibilityIcon/> : <VisibilityOffIcon/>}</i>
                 {errors?.password && <p className="yupErrors">{errors.password.message}</p>}</div>
             <div onClick={handleSubmit(onSubmit)} className={`${styles.button} ${styles.buttonAuth}`}>
-                <YellowButton widthButton={"100%"}
-                              heightButton={"49px"}
-                              nameButton={"Зарегистрироваться"}/></div>
+                <YellowButton nameButton={"Зарегистрироваться"}/></div>
         </div>
     );
 };
